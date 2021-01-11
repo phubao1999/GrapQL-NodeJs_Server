@@ -1,10 +1,13 @@
-var express = require("express");
-var graphqlHTTP = require("express-graphql").graphqlHTTP;
-var { buildSchema } = require("graphql");
-var cors = require('cors')
+const express = require("express");
+const graphqlHTTP = require("express-graphql").graphqlHTTP;
+require('dotenv/config');
+const { buildSchema } = require("graphql");
+const cors = require('cors');
+const port = process.env.PORT || 3000;
+const corsConfig = require('./config/cors');
 
 // Initialize a GraphQL schema
-var schema = buildSchema(`
+const schema = buildSchema(`
   type Query {
     user(id: Int!): Person
     users(shark: String): [Person]
@@ -20,7 +23,7 @@ var schema = buildSchema(`
   }
 `);
 
-var users = [
+const users = [
     {
         id: 1,
         name: 'Brian',
@@ -55,15 +58,15 @@ var users = [
 
 
 // Return a single user (based on id)
-var getUserById = function (args) {
-    var userID = args.id;
+const getUserById = function (args) {
+    const userID = args.id;
     return users.filter(user => user.id == userID)[0];
 }
 
 // Return a list of users (takes an optional shark parameter)
-var retrieveUsers = function (args) {
+const retrieveUsers = function (args) {
     if (args.shark) {
-        var shark = args.shark;
+        const shark = args.shark;
         return users.filter(user => user.shark === shark);
     } else {
         return users;
@@ -71,7 +74,7 @@ var retrieveUsers = function (args) {
 }
 
 // Update a user and return new user details
-var updateUser = function ({ id, name, age }) {
+const updateUser = function ({ id, name, age }) {
     users.map(user => {
         if (user.id === id) {
             user.name = name;
@@ -82,15 +85,15 @@ var updateUser = function ({ id, name, age }) {
     return users.filter(user => user.id === id)[0];
 }
 
-var root = {
+const root = {
     user: getUserById,
     users: retrieveUsers,
     updateUser: updateUser
 };
 
 // Create an express server and a GraphQL endpoint
-var app = express();
-app.use(cors());
+const app = express();
+app.use(cors(corsConfig));
 app.use(
     "/graphql",
     graphqlHTTP({
@@ -99,5 +102,5 @@ app.use(
         graphiql: true, // Enable GraphiQL when server endpoint is accessed in browser
     })
 );
-app.listen(4000, () => console.log("Now browse to localhost:4000/graphql"));
+app.listen(port, () => console.log(`Now browse to localhost:${port}/graphql`));
 
