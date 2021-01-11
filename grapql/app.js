@@ -1,6 +1,7 @@
 var express = require("express");
 var graphqlHTTP = require("express-graphql").graphqlHTTP;
 var { buildSchema } = require("graphql");
+var cors = require('cors')
 
 // Initialize a GraphQL schema
 var schema = buildSchema(`
@@ -89,6 +90,7 @@ var root = {
 
 // Create an express server and a GraphQL endpoint
 var app = express();
+app.use(cors());
 app.use(
     "/graphql",
     graphqlHTTP({
@@ -98,3 +100,4 @@ app.use(
     })
 );
 app.listen(4000, () => console.log("Now browse to localhost:4000/graphql"));
+
