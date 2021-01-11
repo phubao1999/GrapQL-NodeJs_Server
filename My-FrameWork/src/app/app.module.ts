@@ -11,6 +11,8 @@ import { PageErrorComponent } from './page-error/page-error/page-error.component
 import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthComponent } from './auth/auth.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AuthComponent } from './auth/auth.component';
     SharedModule,
     SharedServicesModule,
     UserModule,
-    AdminModule
+    AdminModule,
+    GraphQLModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
