@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  routerLoginAdmin: 'ng-admin',
+  routerLoginAdmin: 'admin',
   tiny_api_key: '62l92kwn54azc3rs68ix68zolih2envsv48p5nn49vunt8tv',
   hostServer: 'http://localhost:8080',
-  graphQLServer: 'http://localhost:4000/graphql'
+  graphQLServer: 'http://localhost:3000/graphql'
 };
 
 /*

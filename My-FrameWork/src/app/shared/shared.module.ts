@@ -14,7 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { EditorModule } from '@tinymce/tinymce-angular';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -42,7 +41,6 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    EditorModule
   ],
   exports: [
     UserLayoutComponent,
