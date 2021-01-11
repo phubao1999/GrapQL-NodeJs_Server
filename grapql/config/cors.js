@@ -3,4 +3,6 @@ const corsConfig = {
     optionsSuccessStatus: 200
 }
 
-module.exports = corsConfig;
+module.exports = {
+    corsConfig
+};
