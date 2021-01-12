@@ -1,10 +1,8 @@
-const query = `
+export class QueryBuild {
+  static query: string = `
     type Query {
         user(id: Int!): Person
         users(shark: String): [Person]
     } 
 `;
-
-module.exports = {
-    query
-};
+}
