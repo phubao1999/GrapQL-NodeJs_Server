@@ -5,28 +5,28 @@ export class UserService {
   static retrieveUsers: Function;
   static updateUser: Function;
 
-  getUserById(args) {
+  getUserById(args: { id: number }) {
     const userID = args.id;
-    return users.filter((user) => user.id == userID)[0];
+    return users.filter((user: { id: number }) => user.id == userID)[0];
   }
 
-  retrieveUsers(args) {
+  retrieveUsers(args: { shark: any }) {
     if (args.shark) {
       const shark = args.shark;
-      return users.filter((user) => user.shark === shark);
+      return users.filter((user: { shark: any }) => user.shark === shark);
     } else {
       return users;
     }
   }
 
-  updateUser(id, name, age) {
-    users.map((user) => {
+  updateUser(id: any, name: any, age: any) {
+    users.map((user: { id: any; name: any; age: any }) => {
       if (user.id === id) {
         user.name = name;
         user.age = age;
         return user;
       }
     });
-    return users.filter((user) => user.id === id)[0];
+    return users.filter((user: { id: any }) => user.id === id)[0];
   }
 }
